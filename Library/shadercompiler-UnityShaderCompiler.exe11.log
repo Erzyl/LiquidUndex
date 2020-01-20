@@ -1,9 +1,56 @@
-Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines'
+Base path: 'C:/Program Files/Unity/Hub/Editor/2019.3.0f5/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.3.0f5/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  api=4 insize=3907 outsize=2751 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=5756 outsize=5733 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1326 outsize=666 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=2585 outsize=2186 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=10150 outsize=733053 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=10610 outsize=880 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=3022 outsize=2047 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=39449 outsize=34940 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=39449 outsize=36296 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8319 outsize=1015 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8666 outsize=6537 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8898 outsize=7435 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=5043 outsize=2822 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8350 outsize=2100 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=11240 outsize=5613 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1580 outsize=16101 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=10018 outsize=2460 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=25900 outsize=15415 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=95677 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=41779 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=78043 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=6113 outsize=4935 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=26408 outsize=437 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=10769 outsize=1413 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1134 outsize=1319 ok=1
 Cmd: compileSnippet
-  api=4 type=0 insize=8103 outsize=810 kw=UNITY_PASS_SHADOWCASTER _NORMALMAP_TANGENT_SPACE0 _NORMALMAP_TANGENT_SPACE1 _NORMALMAP_TANGENT_SPACE2 _NORMALMAP_TANGENT_SPACE3 pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+  api=4 type=1 insize=648 outsize=1582 kw=SMAA_PRESET_MEDIUM pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
 Cmd: compileSnippet
-  api=4 type=0 insize=8218 outsize=1670 kw=DECALS_3RT SHADOW_LOW USE_CLUSTERED_LIGHTLIST _NORMALMAP_TANGENT_SPACE pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
-Unhandled exception: Protocol error - unexpected end of data (did the Editor crash?)
-
-Quitting shader compiler process
+  api=4 type=0 insize=731 outsize=858 kw=ETC1_EXTERNAL_ALPHA pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1

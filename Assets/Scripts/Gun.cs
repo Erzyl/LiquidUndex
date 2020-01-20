@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
     //Weapon vars -- Move to spec script
     //public WeaponStats[] loadout;
     private WeaponSwitch switchParent;
+    private PlayerInput playerInput;
 
     float aimSpeed;
     float impactForce;
@@ -36,7 +37,8 @@ public class Gun : MonoBehaviour
 
     private void Start() {
         fpsCam = GameObject.Find("CameraMain");
-        
+
+        playerInput = transform.GetComponentInParent<PlayerInput>();
         switchParent = transform.GetComponentInParent<WeaponSwitch>();
         UpdateWeaponStats();
 
@@ -46,7 +48,9 @@ public class Gun : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if (Input.GetButton("Fire1")) {
+       
+
+        if (playerInput.shoot) {
 
             shootTimer = (shootTimer > 0 ? shootTimer - shootTimerTick : 0);
 
@@ -56,7 +60,10 @@ public class Gun : MonoBehaviour
             }
         }
 
-        isAiming = Aim(Input.GetMouseButton(1));
+        if (playerInput.run)
+            isAiming = Aim(false);
+        else
+            isAiming = Aim(playerInput.aim);
 
         //Weapon elasticity
         transform.localPosition = Vector3.Lerp(transform.localPosition, startPos, Time.deltaTime * 4f);
@@ -64,7 +71,7 @@ public class Gun : MonoBehaviour
     }
 
     void UpdateWeaponStats() {
-         int selWep = switchParent.selectedWeapon;
+         int selWep = switchParent.inventory[switchParent.selectedInventorySlot];
 
         shootTimerTick = switchParent.loadout[selWep].firerate;
         aimSpeed = switchParent.loadout[selWep].aimSpeed;

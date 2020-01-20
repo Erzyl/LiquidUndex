@@ -1,2 +1,54 @@
-Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines'
+Base path: 'C:/Program Files/Unity/Hub/Editor/2019.3.0f5/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.3.0f5/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  api=4 insize=9998 outsize=451 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15552 outsize=2847 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=4415 outsize=695 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8413 outsize=8564 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=21900 outsize=21785 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=846 outsize=578 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=39449 outsize=34078 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=39449 outsize=35450 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=8319 outsize=984 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1088 outsize=687 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=21755 outsize=14163 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=2905 outsize=1865 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=5043 outsize=1808 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=25900 outsize=15695 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=41506 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=37394 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=55270 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=66561 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=38923 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=15581 outsize=77598 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=3877 outsize=4173 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=26408 outsize=789 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=11912 outsize=1307 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=1929 outsize=1220 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=7401 outsize=6491 ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=7256 outsize=142 kw=_NORMALMAP_TANGENT_SPACE pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1

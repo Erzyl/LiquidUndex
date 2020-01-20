@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
-{
-    public Vector2 input
-    {
-        get
-        {
+public class PlayerInput : MonoBehaviour{
+    public Vector2 input{
+        get{
             Vector2 i = Vector2.zero;
             i.x = Input.GetAxis("Horizontal");
             i.y = Input.GetAxis("Vertical");
@@ -46,6 +43,13 @@ public class PlayerInput : MonoBehaviour
     public bool crouching
     {
         get { return Input.GetButton("Crouch"); }
+    }
+
+    public bool shoot {
+        get { return Input.GetButton("Fire1"); }
+    }
+    public bool aim {
+        get { return Input.GetMouseButton(1); }
     }
 
     private Vector2 previous;

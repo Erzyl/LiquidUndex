@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1202227199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561532844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16a70e1a5730f74ea46b046750bfe2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632230917
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +69,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 632230917}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.8
   m_Height: 1.69
   m_Direction: 1
@@ -72,9 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 352099342910523991}
   - component: {fileID: 352099342910523988}
-  - component: {fileID: 352099342910523977}
-  - component: {fileID: 352099342910523976}
-  - component: {fileID: 352099342910523989}
+  - component: {fileID: 352099342910523992}
   m_Layer: 17
   m_Name: WeaponCamera
   m_TagString: Player
@@ -107,12 +117,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 12
+  m_FocalLength: 12.000004
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -121,7 +131,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 90
+  field of view: 89.999985
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -139,67 +149,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &352099342910523977
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352099342910523990}
-  m_Enabled: 0
---- !u!114 &352099342910523976
+--- !u!114 &352099342910523992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352099342910523990}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 2
-  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
-  clearDepth: 1
-  volumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  volumeAnchorOverride: {fileID: 0}
-  antialiasing: 2
-  SMAAQuality: 2
-  dithering: 1
-  stopNaNs: 0
-  physicalParameters:
-    m_Iso: 200
-    m_ShutterSpeed: 0.005
-    m_Aperture: 16
-    m_BladeCount: 5
-    m_Curvature: {x: 2, y: 11}
-    m_BarrelClipping: 0.25
-    m_Anamorphism: 0
-  flipYMode: 0
-  fullscreenPassthrough: 0
-  allowDynamicResolution: 0
-  customRenderingSettings: 0
-  invertFaceCulling: 0
-  probeLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPathCustomFrameSettings:
-    bitDatas:
-      data1: 68184748261149
-      data2: 4539628424389459968
-    lodBias: 1
-    lodBiasMode: 0
-    maximumLODLevel: 0
-    maximumLODLevelMode: 0
-  renderingPathCustomFrameSettingsOverrideMask:
-    mask:
-      data1: 0
-      data2: 0
-  defaultFrameSettings: 0
-  m_Version: 5
+  m_Version: 7
   m_ObsoleteRenderingPath: 0
   m_ObsoleteFrameSettings:
     overrides: 0
@@ -246,24 +208,51 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &352099342910523989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352099342910523990}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d28c262c1f7bd24185ece9c13feef1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterBody: {fileID: 7085721664118310506}
-  clampInDegrees: {x: 360, y: 180}
-  sensitivity: {x: 1.5, y: 1.5}
-  smoothing: {x: 2, y: 2}
-  targetDirection: {x: 0, y: 0}
-  targetCharacterDirection: {x: 0, y: 0}
+  clearColorMode: 2
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  volumeAnchorOverride: {fileID: 0}
+  antialiasing: 2
+  SMAAQuality: 2
+  dithering: 0
+  stopNaNs: 0
+  taaSharpenStrength: 2
+  physicalParameters:
+    m_Iso: 200
+    m_ShutterSpeed: 0.005
+    m_Aperture: 16
+    m_BladeCount: 5
+    m_Curvature: {x: 2, y: 11}
+    m_BarrelClipping: 0.25
+    m_Anamorphism: 0
+  flipYMode: 0
+  fullscreenPassthrough: 0
+  allowDynamicResolution: 0
+  customRenderingSettings: 0
+  invertFaceCulling: 0
+  probeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hasPersistentHistory: 0
+  m_RenderingPathCustomFrameSettings:
+    bitDatas:
+      data1: 70005819440989
+      data2: 4539628424389459968
+    lodBias: 1
+    lodBiasMode: 0
+    lodBiasQualityLevel: 0
+    maximumLODLevel: 0
+    maximumLODLevelMode: 0
+    maximumLODLevelQualityLevel: 0
+    materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
+    mask:
+      data1: 0
+      data2: 0
+  defaultFrameSettings: 0
 --- !u!1 &1956946879982233398
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +264,8 @@ GameObject:
   - component: {fileID: 1845702135359636223}
   - component: {fileID: 8357724023676329769}
   - component: {fileID: 1915610417073731921}
+  - component: {fileID: 979852314}
+  - component: {fileID: 979852315}
   m_Layer: 16
   m_Name: WeaponHolder
   m_TagString: Player
@@ -308,10 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef6a3361c57312409a6a982342e78e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedWeapon: 0
-  loadout:
-  - {fileID: 11400000, guid: 066b628a31987bc4b9f0da988c9fca2f, type: 2}
-  - {fileID: 11400000, guid: 665e03c0ae8843044b5d86317cd5c152, type: 2}
+  selectedInventorySlot: -1
+  loadout: []
+  inventory: 
 --- !u!114 &1915610417073731921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +316,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 3
   smooth: 10
+--- !u!114 &979852314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956946879982233398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85912ea69b4cfdf479480439ce93abb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadout:
+  - {fileID: 11400000, guid: 066b628a31987bc4b9f0da988c9fca2f, type: 2}
+  - {fileID: 11400000, guid: 665e03c0ae8843044b5d86317cd5c152, type: 2}
+--- !u!114 &979852315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956946879982233398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c6fa0229f028944ba38636f0bb6074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 561532846}
+  lootRange: 3
+  mask:
+    serializedVersion: 2
+    m_Bits: 262144
 --- !u!1 &6526632516643132701
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +506,7 @@ MonoBehaviour:
   wallrunLayer:
     serializedVersion: 2
     m_Bits: 8192
+  playerInput: {fileID: 0}
   weaponParent: {fileID: 1845702135359636223}
 --- !u!114 &1149800568
 MonoBehaviour:
@@ -611,11 +634,38 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 933175
       objectReference: {fileID: 0}
+    - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
+        type: 3}
+      propertyPath: m_Version
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
+        type: 3}
+      propertyPath: taaSharpenStrength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
+        type: 3}
+      propertyPath: m_RenderingPathCustomFrameSettings.bitDatas.data1
+      value: 68906302766941
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 153877c9cb47c754b83702e88c7a4bc6, type: 3}
+--- !u!1 &561532844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4062270882232919309, guid: 153877c9cb47c754b83702e88c7a4bc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4062270881708092065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &561532845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4062270882232919308, guid: 153877c9cb47c754b83702e88c7a4bc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4062270881708092065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &561532846 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4062270882232919311, guid: 153877c9cb47c754b83702e88c7a4bc6,
     type: 3}
   m_PrefabInstance: {fileID: 4062270881708092065}
   m_PrefabAsset: {fileID: 0}

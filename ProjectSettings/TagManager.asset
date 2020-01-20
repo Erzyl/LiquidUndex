@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - Enemy
+  - WeaponPickup
   layers:
   - Default
   - TransparentFX
