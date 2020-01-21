@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.066071145, y: 0.028092386, z: 0.17910106}
-  m_Center: {x: -0.025600335, y: 0.0073259217, z: 0.038584154}
+  m_Size: {x: 0.05629967, y: 0.028092386, z: 0.17910106}
+  m_Center: {x: -0.030486304, y: 0.0073259217, z: 0.038584158}
 --- !u!114 &4149898534321402992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8579243282412407078}
   - component: {fileID: 8579243282412407072}
   - component: {fileID: 8579243282412407073}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 8579243283173271547}
   - component: {fileID: 8579243283173271045}
   - component: {fileID: 8579243283173271546}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Frame2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8579243283644966279}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

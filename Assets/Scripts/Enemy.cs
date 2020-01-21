@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private int hp;
-    private int hp_max = 5;
+    private int hp_max = 50;
 
     public Rigidbody ragRigidHip;
 

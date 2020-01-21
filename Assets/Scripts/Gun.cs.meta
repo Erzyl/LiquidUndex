@@ -3,7 +3,11 @@ guid: fc078faf894ba9e40b1847f6f26351ea
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - muzzleFlash: {instanceID: 0}
+  - impactEffect: {instanceID: 0}
+  - bulletHole: {instanceID: 0}
+  - hitMarkerSound: {fileID: 8300000, guid: 04411e50519fc3443820c35eb18cf025, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

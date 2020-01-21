@@ -15,13 +15,15 @@ public class WeaponSwitch : MonoBehaviour
 
     private void Awake() {
         loadout = GetComponent<WeaponList>().loadout;
-        //inventory.Add(1);
+        inventory.Add(2);
         //inventory.Add(0);
     }
 
     void Start(){
-        if (inventory.Count > 0)
-            SelectWeapon();   
+        if (inventory.Count > -1){
+           // selectedInventorySlot = 0;
+           // SelectWeapon();
+        }
     }
 
     // Update is called once per frame
@@ -60,6 +62,8 @@ public class WeaponSwitch : MonoBehaviour
         GameObject newWeapon = Instantiate(loadout[weaponNumber].prefab,transform.TransformPoint(offset), transform.rotation,transform) as GameObject;
 
         currentWeapon = newWeapon;
+
+        currentWeapon.GetComponent<Animator>().Play("Equip", 0, 0);
     }
 
 }

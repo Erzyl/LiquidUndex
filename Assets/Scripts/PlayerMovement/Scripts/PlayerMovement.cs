@@ -31,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private bool forceGravity;
     private float forceTime = 0;
 
-
+    [SerializeField]
+    private AudioController footSteps;
 
     private void Awake(){
         // Saving component references to improve performance.
@@ -72,6 +73,11 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = new Vector3(input.x, -antiBumpFactor, input.y);
             moveDirection = transform.TransformDirection(moveDirection) * speed;
             UpdateJump();
+
+            if (controller.velocity.magnitude > 0) {
+                footSteps.delayBetweenClips = (1/speed)*3;
+                footSteps.Play();
+            }
         }
         
         // Apply gravity

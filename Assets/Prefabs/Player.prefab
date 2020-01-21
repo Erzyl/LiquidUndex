@@ -263,9 +263,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1845702135359636223}
   - component: {fileID: 8357724023676329769}
+  - component: {fileID: 979852315}
   - component: {fileID: 1915610417073731921}
   - component: {fileID: 979852314}
-  - component: {fileID: 979852315}
   m_Layer: 16
   m_Name: WeaponHolder
   m_TagString: Player
@@ -302,6 +302,23 @@ MonoBehaviour:
   selectedInventorySlot: -1
   loadout: []
   inventory: 
+--- !u!114 &979852315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956946879982233398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c6fa0229f028944ba38636f0bb6074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 561532846}
+  lootRange: 3
+  mask:
+    serializedVersion: 2
+    m_Bits: 262144
 --- !u!114 &1915610417073731921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,23 +348,6 @@ MonoBehaviour:
   loadout:
   - {fileID: 11400000, guid: 066b628a31987bc4b9f0da988c9fca2f, type: 2}
   - {fileID: 11400000, guid: 665e03c0ae8843044b5d86317cd5c152, type: 2}
---- !u!114 &979852315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956946879982233398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c6fa0229f028944ba38636f0bb6074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 561532846}
-  lootRange: 3
-  mask:
-    serializedVersion: 2
-    m_Bits: 262144
 --- !u!1 &6526632516643132701
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7085721664118310506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.875, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6526632516643132702}
@@ -634,6 +634,11 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 933175
       objectReference: {fileID: 0}
+    - target: {fileID: 4062270882232919311, guid: 153877c9cb47c754b83702e88c7a4bc6,
+        type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
         type: 3}
       propertyPath: m_Version
@@ -641,8 +646,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
         type: 3}
+      propertyPath: stopNaNs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
+        type: 3}
       propertyPath: taaSharpenStrength
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
+        type: 3}
+      propertyPath: allowDynamicResolution
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4062270882232919315, guid: 153877c9cb47c754b83702e88c7a4bc6,
         type: 3}

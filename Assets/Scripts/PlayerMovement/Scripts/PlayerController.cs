@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     Vector3 vaultOver;
     Vector3 vaultDir;
 
-    PlayerMovement movement;
+    [HideInInspector]
+    public PlayerMovement movement;
     [HideInInspector]
     public PlayerInput playerInput;
     AnimateLean animateLean;

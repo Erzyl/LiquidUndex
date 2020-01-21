@@ -62,11 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
-    <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
-    <None Include="Assets\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
+    <Compile Include="Assets\Misc\NavMeshComponents\Scripts\NavMeshLink.cs" />
+    <Compile Include="Assets\Misc\NavMeshComponents\Scripts\NavMeshModifier.cs" />
+    <Compile Include="Assets\Misc\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\Misc\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+    <None Include="Assets\Misc\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
