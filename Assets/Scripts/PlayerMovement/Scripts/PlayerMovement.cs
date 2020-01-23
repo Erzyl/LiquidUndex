@@ -25,11 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     public bool grounded = false;
     public Vector3 jump = Vector3.zero;
+    public float airControll = 0.3f;
 
     private RaycastHit hit;
     private Vector3 force;
     private bool forceGravity;
     private float forceTime = 0;
+
+    public AudioClip jumpSound;
 
     [SerializeField]
     private AudioController footSteps;
@@ -69,15 +72,27 @@ public class PlayerMovement : MonoBehaviour
         if (crouching) speed = crouchSpeed;
 
         if (grounded){
+
             moveDirection = new Vector3(input.x, -antiBumpFactor, input.y);
-            moveDirection = transform.TransformDirection(moveDirection) * speed;
+            moveDirection = transform.TransformDirection(moveDirection) * speed; //Local dir to world dir
             UpdateJump();
 
-            if (controller.velocity.magnitude > 0) {
-                footSteps.delayBetweenClips = (1/speed)*3;
-                footSteps.Play();
-            }
+            PlayFootSteps(speed);
+
+           
         }
+        else { //Air controll
+            
+            Vector3 md = new Vector3(input.x* airControll, moveDirection.y, input.y* airControll);
+            md = transform.TransformDirection(md); //Local dir to world dir
+
+            Vector3 movDirHolder = moveDirection;
+            movDirHolder.x += md.x;
+            movDirHolder.z += md.z;
+            moveDirection = movDirHolder;
+        }
+
+        
         
         // Apply gravity
         moveDirection.y -= gravity * Time.deltaTime;
@@ -85,10 +100,18 @@ public class PlayerMovement : MonoBehaviour
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
     }
 
+    public void PlayFootSteps(float speed) {
+        if (controller.velocity.magnitude > 0) {
+            footSteps.delayBetweenClips = (1 / speed) * 3;
+            footSteps.Play();
+        }
+    }
+
     public void Move(Vector3 direction, float speed, float appliedGravity){
         if (forceTime > 0)
             return;
-
+        //When sliding etc
+        
         Vector3 move = direction * speed;
         if (appliedGravity > 0){
             moveDirection.x = move.x;
@@ -104,16 +127,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Jump(Vector3 dir, float mult){
-        jump = dir * mult;
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position, 2f);
+        jump = dir * mult; // up * speed
     }
 
     public void UpdateJump(){
-        if (jump != Vector3.zero)
-        {
+        
+        if (jump != Vector3.zero){ //Initiating jump
             Vector3 dir = (jump * jumpSpeed);
-            if (dir.x != 0) moveDirection.x = dir.x;
-            if (dir.y != 0) moveDirection.y = dir.y;
-            if (dir.z != 0) moveDirection.z = dir.z;
+
+            if (dir.x != 0)
+                moveDirection.x = dir.x;
+            if (dir.y != 0)
+                moveDirection.y = dir.y;
+            if (dir.z != 0)
+                moveDirection.z = dir.z;
         }
         jump = Vector3.zero;
     }

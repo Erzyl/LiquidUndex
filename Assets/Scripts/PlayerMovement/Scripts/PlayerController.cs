@@ -54,12 +54,14 @@ public class PlayerController : MonoBehaviour
     private float idleCounter;
     private Vector3 targetWeaponBobPosition;
 
-    float curSlideSpeed;
-    float slideDeacc = 6f;
-
+    [SerializeField]
+    private float curSlideSpeed;
+    public float slideDeacc = 6f;
+    public float slideAccScaler = 0.2f;
     private bool polledInputWalljump = false;
-
     private float wallSnapTimer;
+
+    public AudioSource slideSound;
 
     private void Start(){
         CreateVaultHelper();
@@ -81,6 +83,12 @@ public class PlayerController : MonoBehaviour
 
     /******************************* UPDATE ******************************/
     void Update(){
+
+        float deathY = -150f;
+
+        if (transform.position.y < deathY) {
+            GameObject.Find("GameControll").GetComponent<GameSettings>().RestartLevel();
+        }
 
         if (playerInput.wallJump) {
             polledInputWalljump = true;
@@ -164,6 +172,7 @@ public class PlayerController : MonoBehaviour
     /******************************** MOVE *******************************/
     void FixedUpdate()
     {
+        
         switch (status) {
             case Status.sliding:
                 SlideMovement();
@@ -199,8 +208,7 @@ public class PlayerController : MonoBehaviour
             Uncrouch();
 
         movement.Move(playerInput.input, playerInput.run, (status == Status.crouching));
-        if (movement.grounded && playerInput.Jump())
-        {
+        if (movement.grounded && playerInput.Jump()){
             if (status == Status.crouching)
                 Uncrouch();
 
@@ -213,22 +221,34 @@ public class PlayerController : MonoBehaviour
     /****************************** SLIDING ******************************/
     void SlideMovement(){
 
+        if (!slideSound.isPlaying && curSlideSpeed > 0){
+            slideSound.Play();
+        }
+
         if (movement.grounded && playerInput.Jump()){
 
-            if (controlledSlide)
+            if (controlledSlide){
                 slideDir = transform.forward;
+            }
             movement.Jump(slideDir + Vector3.up, 1f);
             playerInput.ResetJump();
             slideTime = 0;
         }
 
-        //float angle = Vector3.Angle(hit.normal, Vector3.up);
+        float slideAcc = 0;
+        if (movement.moveDirection.y < 0) {
+            RaycastHit ground;
+            Physics.Raycast(transform.position, -Vector3.up, out ground, rayDistance);
 
-        curSlideSpeed = (curSlideSpeed > 0 ? (curSlideSpeed - Time.deltaTime* slideDeacc) : 0);
+            float angle = Vector3.Angle(ground.normal, Vector3.up);
+            slideAcc = slideAccScaler * angle;
+        }
+        curSlideSpeed = (curSlideSpeed > 0 ? (curSlideSpeed - Time.deltaTime* slideDeacc+Time.deltaTime*slideAcc) : 0);
         
+
         movement.Move(slideDir, curSlideSpeed , 1f);
 
-        if (slideTime <= 0){
+        if (slideTime <= 0) {
             if (playerInput.crouching)
                 Crouch();
             else
@@ -238,9 +258,8 @@ public class PlayerController : MonoBehaviour
 
     void CheckSliding(){
 
-
         //Check to slide when running
-        if(playerInput.crouch && canSlide()){
+        if (playerInput.crouch && canSlide()){
 
             slideDir = transform.forward;
             movement.controller.height = halfheight;
@@ -250,11 +269,13 @@ public class PlayerController : MonoBehaviour
 
         //Toggle slide
         if (status == Status.sliding) {
-            if (!playerInput.crouching) {
+            if (!playerInput.crouching && controlledSlide) {
                 slideTime = 0;
             }
         }
         else {
+            if (slideSound.isPlaying) 
+                slideSound.Stop();
             curSlideSpeed = movement.slideSpeed;
         }
 
@@ -266,14 +287,24 @@ public class PlayerController : MonoBehaviour
 
         //Walking on too steep ground
         if (Physics.Raycast(transform.position, -Vector3.up, out var hit, rayDistance)) {
-            float angle = Vector3.Angle(hit.normal, Vector3.up);
+            float angle = Vector3.Angle(hit.normal, Vector3.up); //Slope angle
+
             if (angle > slideLimit && movement.moveDirection.y < 0 && status != Status.sliding) {
+                slideTime = 1f;
                 Vector3 hitNormal = hit.normal;
                 slideDir = new Vector3(hitNormal.x, -hitNormal.y, hitNormal.z);
                 Vector3.OrthoNormalize(ref hitNormal, ref slideDir);
                 controlledSlide = false;
                 status = Status.sliding;
             }
+            else if (status == Status.sliding && angle <= slideLimit && !controlledSlide) {
+                slideTime = 0;
+                movement.Jump(Vector3.up, 1f);
+                playerInput.ResetJump();
+            }
+        }
+        else if(status == Status.sliding){
+            slideTime = 0;
         }
     }
 
@@ -323,8 +354,7 @@ public class PlayerController : MonoBehaviour
         status = Status.crouching;
     }
 
-    void Uncrouch()
-    {
+    void Uncrouch(){
         movement.controller.height = height;
         status = Status.moving;
     }
@@ -387,6 +417,8 @@ public class PlayerController : MonoBehaviour
         Vector3 input = playerInput.input;
         float s = (input.y > 0) ? input.y : 0;
 
+        
+
         Vector3 move = wallNormal * s;
         
         if (polledInputWalljump) {
@@ -398,6 +430,7 @@ public class PlayerController : MonoBehaviour
         if (!hasWallToSide(wallDir) || movement.grounded)
             status = Status.moving;
 
+        movement.PlayFootSteps(movement.runSpeed);
         float wallRunGrav = 1;// 75f;
         movement.Move(move, movement.runSpeed, (wallRunGrav - s) + (s / (wallRunGrav*4)));
     }

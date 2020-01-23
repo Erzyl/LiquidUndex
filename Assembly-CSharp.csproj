@@ -78,6 +78,8 @@
     <Compile Include="Assets\Effects\Packages\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
     <Compile Include="Assets\Effects\Packages\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
     <Compile Include="Assets\Effects\Packages\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
+    <Compile Include="Assets\EnemyBulletScript.cs" />
+    <Compile Include="Assets\EnemyShoot.cs" />
     <Compile Include="Assets\Environment\Packages\Western Props\Scripts\Destructible.cs" />
     <Compile Include="Assets\Models\LowMan\LowMan\Scripts\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
@@ -166,6 +168,9 @@
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
       <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
@@ -174,6 +179,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
       <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Editor">
       <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
@@ -195,12 +203,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Project/LiquidUndex/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f5/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
