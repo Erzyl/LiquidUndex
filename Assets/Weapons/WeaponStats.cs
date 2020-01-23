@@ -15,9 +15,13 @@ public class WeaponStats : ScriptableObject{
     public float recoil = 2.5f;
     public float kickback = 0.1f;
 
+
+    //Either setup for each weapon state, or only use from states prefab and remove these!
     public float modelOffsetX = 5;
     public float modelOffsetY = 0;
     public float modelOffsetZ = 0;
+
+    public GameObject projectile; //Optional
 
     public AudioClip gunShotSound;
     public float pitchRandomization;

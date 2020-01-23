@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private LayerMask ladderLayer;
     [SerializeField]
     private LayerMask wallrunLayer;
-
+    public float wallJumpForce = 3f;
     GameObject vaultHelper;
 
     Vector3 wallNormal = Vector3.zero;
@@ -57,8 +57,11 @@ public class PlayerController : MonoBehaviour
     float curSlideSpeed;
     float slideDeacc = 6f;
 
-    private void Start()
-    {
+    private bool polledInputWalljump = false;
+
+    private float wallSnapTimer;
+
+    private void Start(){
         CreateVaultHelper();
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
@@ -77,8 +80,11 @@ public class PlayerController : MonoBehaviour
     }
 
     /******************************* UPDATE ******************************/
-    void Update()
-    {
+    void Update(){
+
+        if (playerInput.wallJump) {
+            polledInputWalljump = true;
+        }
         //Updates
         UpdateInteraction();
         UpdateMovingStatus();
@@ -115,8 +121,7 @@ public class PlayerController : MonoBehaviour
         //Add sprinting spec
     }
 
-    void UpdateInteraction()
-    {
+    void UpdateInteraction(){
         if (!canInteract)
         {
             if (movement.grounded || movement.moveDirection.y < 0)
@@ -159,8 +164,7 @@ public class PlayerController : MonoBehaviour
     /******************************** MOVE *******************************/
     void FixedUpdate()
     {
-        switch (status)
-        {
+        switch (status) {
             case Status.sliding:
                 SlideMovement();
                 break;
@@ -182,6 +186,10 @@ public class PlayerController : MonoBehaviour
             default:
                 DefaultMovement();
                 break;
+        }
+
+        if (polledInputWalljump) {
+            polledInputWalljump = false;
         }
     }
 
@@ -375,16 +383,14 @@ public class PlayerController : MonoBehaviour
     /*********************************************************************/
 
     /**************************** WALLRUNNING ****************************/
-    void WallrunningMovement()
-    {
+    void WallrunningMovement(){
         Vector3 input = playerInput.input;
         float s = (input.y > 0) ? input.y : 0;
 
         Vector3 move = wallNormal * s;
-
-        if (playerInput.Jump()){
-            float wallJump = 3f;
-            movement.Jump(((Vector3.up * (s + 0.5f*wallJump)) + (wallNormal * 2f*wallJump * s) + (transform.right * -wallDir * 1.25f*wallJump)).normalized, s + 0.5f*wallJump);
+        
+        if (polledInputWalljump) {
+            movement.Jump(((Vector3.up * (s + 0.5f)) + (wallNormal * 2f * s) + (transform.right * -wallDir * 1.25f)).normalized, s + 0.5f*wallJumpForce);
             playerInput.ResetJump();
             status = Status.moving;
         }
@@ -392,17 +398,20 @@ public class PlayerController : MonoBehaviour
         if (!hasWallToSide(wallDir) || movement.grounded)
             status = Status.moving;
 
-        float wallRunGrav = .75f;// 75f;
+        float wallRunGrav = 1;// 75f;
         movement.Move(move, movement.runSpeed, (wallRunGrav - s) + (s / (wallRunGrav*4)));
     }
 
-    void CheckForWallrun()
-    {
-        if (!canInteract || movement.grounded || movement.moveDirection.y >= 0)
-            return;
 
-        //if (movement.grounded || !canInteract)
-        //    return;
+    void CheckForWallrun(){
+
+        if (movement.grounded)
+            wallSnapTimer = 1;
+        else
+            wallSnapTimer = wallSnapTimer > 0 ? wallSnapTimer - Time.deltaTime*3 : 0;
+
+        if (!canInteract || wallSnapTimer != 0)
+            return;
 
         int wall = 0;
         if (hasWallToSide(1))
@@ -416,24 +425,27 @@ public class PlayerController : MonoBehaviour
             wallDir = wall;
             wallNormal = Vector3.Cross(hit.normal, Vector3.up) * -wallDir;
             status = Status.wallRunning;
+            wallSnapTimer = 1;
+            playerInput.ResetJump();
         }
     }
 
     bool hasWallToSide(int dir){
         //Check for ladder in front of player
-        Vector3 top = transform.position + (transform.right * 0.25f * dir);
+        float wallFindScaler = 1f;
+        float wallFindScaler2 = 1f;
+        Vector3 top = transform.position + (transform.right * 0.25f* wallFindScaler * dir);
         Vector3 bottom = top - (transform.up * radius);
         top += (transform.up * radius);
-
-        return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.right * dir, 0.05f, wallrunLayer).Length >= 1);
+        playerInput.ResetJump();
+        return (Physics.CapsuleCastAll(top, bottom, 0.25f* wallFindScaler, transform.right * dir, 0.05f* wallFindScaler2, wallrunLayer).Length >= 1);
     }
     /*********************************************************************/
 
     /******************** LEDGE GRABBING AND CLIMBING ********************/
-    void GrabbedLedgeMovement()
-    {
-        if (playerInput.Jump())
-        {
+    void GrabbedLedgeMovement(){
+
+        if (playerInput.Jump()){
             movement.Jump((Vector3.up - transform.forward).normalized, 1f);
             playerInput.ResetJump();
             status = Status.moving;
@@ -442,8 +454,7 @@ public class PlayerController : MonoBehaviour
         movement.Move(Vector3.zero, 0f, 0f); //Stay in place
     }
 
-    void ClimbLedgeMovement()
-    {
+    void ClimbLedgeMovement(){
         Vector3 dir = pushFrom - transform.position;
         Vector3 right = Vector3.Cross(Vector3.up, dir).normalized;
         Vector3 move = Vector3.Cross(dir, right).normalized;
@@ -461,8 +472,7 @@ public class PlayerController : MonoBehaviour
         bool right = Physics.Raycast(pos + (transform.right * radius / 2f), dir, radius + 0.125f, ledgeLayer);
         bool left = Physics.Raycast(pos - (transform.right * radius / 2f), dir, radius + 0.125f, ledgeLayer);
 
-        if (Physics.Raycast(pos, dir, out var hit, radius + 0.125f, ledgeLayer) && right && left)
-        {
+        if (Physics.Raycast(pos, dir, out var hit, radius + 0.125f, ledgeLayer) && right && left){
             Vector3 rotatePos = transform.InverseTransformPoint(hit.point);
             rotatePos.x = 0; rotatePos.z = 1;
             pushFrom = transform.position + transform.TransformDirection(rotatePos); //grab the position with local z = 1
@@ -484,22 +494,28 @@ public class PlayerController : MonoBehaviour
         if (movement.grounded || movement.moveDirection.y > 0)
             canGrabLedge = true;
 
-        if (status != Status.climbingLedge)
-        {
-            if (canGrabLedge && !movement.grounded)
-            {
+        if (status != Status.climbingLedge){
+            if (canGrabLedge && !movement.grounded){
                 if (movement.moveDirection.y < 0)
                     CheckLedgeGrab();
             }
 
-            if (status == Status.grabbedLedge)
-            {
+            if (status == Status.grabbedLedge){
+                bool instantClimb = true;
+
                 canGrabLedge = false;
-                Vector2 down = playerInput.down;
-                if (down.y == -1)
-                    status = Status.moving;
-                else if (down.y == 1)
+                
+                //Hang or instant climb
+                if (!instantClimb){
+                    Vector2 down = playerInput.down;
+                    if (down.y == -1)
+                        status = Status.moving;
+                    else if (down.y == 1)
+                        status = Status.climbingLedge;
+                    }
+                else {
                     status = Status.climbingLedge;
+                }
             }
         }
     }

@@ -28,8 +28,9 @@ public class Gun : MonoBehaviour
     private float bloomRate;
     private float recoil;
     private float kickback;
-    private float shootTimer;
+    private float shootTimer = 1f;
     public float pitchRandom;
+    private GameObject projectile;
 
     Vector3 startPos;
     Quaternion startRot;
@@ -99,7 +100,8 @@ public class Gun : MonoBehaviour
     }
 
     void UpdateWeaponStats() {
-         int selWep = switchParent.inventory[switchParent.selectedInventorySlot];
+        int selWep = switchParent.inventory[switchParent.selectedInventorySlot];
+        
 
         shootTimerTick = switchParent.loadout[selWep].firerate;
         aimSpeed = switchParent.loadout[selWep].aimSpeed;
@@ -110,6 +112,8 @@ public class Gun : MonoBehaviour
         kickback = switchParent.loadout[selWep].kickback;
         sfx.clip = switchParent.loadout[selWep].gunShotSound;
         pitchRandom = switchParent.loadout[selWep].pitchRandomization;
+        projectile = switchParent.loadout[selWep].projectile;
+ 
     }
 
     bool Aim(bool p_isAiming) {
@@ -137,7 +141,6 @@ public class Gun : MonoBehaviour
 
     void Shoot() {
 
-
         reticleCheck.isShooting = true;
 
         //Gun effects
@@ -152,25 +155,41 @@ public class Gun : MonoBehaviour
         sfx.Play();
 
         //Bloom
-        bloomScaler = reticleCheck.currentSize*0.03f;
+        bloomScaler = reticleCheck.currentSize * 0.03f;
 
         Vector3 bloom = fpsCam.transform.position + fpsCam.transform.forward * 1000f;
-        bloom += Random.Range(-bloomRate* bloomScaler, bloomRate* bloomScaler) * fpsCam.transform.up;
-        bloom += Random.Range(-bloomRate* bloomScaler, bloomRate* bloomScaler) * fpsCam.transform.right;
+        bloom += Random.Range(-bloomRate * bloomScaler, bloomRate * bloomScaler) * fpsCam.transform.up;
+        bloom += Random.Range(-bloomRate * bloomScaler, bloomRate * bloomScaler) * fpsCam.transform.right;
         bloom -= transform.position;
         bloom.Normalize();
+
+
+        if (!projectile)
+            ShootRaycast(bloom);
+        else
+            ShootProjectile();
+    }
+
+
+
+    void ShootProjectile() {
+        GameObject bullet = Instantiate(projectile,muzzleFlash.transform.position,muzzleFlash.transform.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.forward*500f);
+    }
+
+    void ShootRaycast(Vector3 bloom) {
 
         //Ray
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, bloom, out hit, range, mask)) {
 
-            Target target = hit.transform.GetComponent<Target>();
-            if (target != null){
-                target.TakeDamage(damage);
-            }
+            //Target target = hit.transform.GetComponent<Target>();
+            //if (target != null) {
+            //    target.TakeDamage(damage);
+            //}
 
             if (hit.rigidbody != null) { //If rigidbody apply force
-                hit.rigidbody.AddForce(-hit.normal*impactForce);
+                hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
 
             destination = hit.point + hit.normal * .0015f;
@@ -185,7 +204,7 @@ public class Gun : MonoBehaviour
 
                 hitMarkerImage.color = Color.white;
                 hitMarkerWait = 0.1f;
-                sfx.PlayOneShot(hitMarkerSound,20f);
+                sfx.PlayOneShot(hitMarkerSound, 20f);
 
             }
 
@@ -194,4 +213,5 @@ public class Gun : MonoBehaviour
             Destroy(impactGo, 2f);
         }
     }
+
 }

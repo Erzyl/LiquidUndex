@@ -51,6 +51,9 @@ public class PlayerInput : MonoBehaviour{
     public bool aim {
         get { return Input.GetMouseButton(1); }
     }
+    public bool wallJump {
+        get { return Input.GetKeyDown(KeyCode.Space); }
+    }
 
     private Vector2 previous;
     private Vector2 _down;
@@ -58,32 +61,26 @@ public class PlayerInput : MonoBehaviour{
     private int jumpTimer;
     private bool jump;
 
-    void Start()
-    {
+    void Start(){
         jumpTimer = -1;
     }
 
-    void Update()
-    {
+    void Update(){
         _down = Vector2.zero;
-        if (raw.x != previous.x)
-        {
+        if (raw.x != previous.x){
             previous.x = raw.x;
             if (previous.x != 0)
                 _down.x = previous.x;
         }
-        if (raw.y != previous.y)
-        {
+        if (raw.y != previous.y){
             previous.y = raw.y;
             if (previous.y != 0)
                 _down.y = previous.y;
         }
     }
 
-    public void FixedUpdate()
-    {
-        if (!Input.GetKey(KeyCode.Space))
-        {
+    public void FixedUpdate(){
+        if (!Input.GetKey(KeyCode.Space)){
             jump = false;
             jumpTimer++;
         }
@@ -91,13 +88,12 @@ public class PlayerInput : MonoBehaviour{
             jump = true;
     }
 
-    public bool Jump()
-    {
+    public bool Jump(){
         return jump;
     }
 
-    public void ResetJump()
-    {
+
+    public void ResetJump(){
         jumpTimer = -1;
     }
 }

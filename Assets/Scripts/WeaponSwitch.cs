@@ -15,7 +15,7 @@ public class WeaponSwitch : MonoBehaviour
 
     private void Awake() {
         loadout = GetComponent<WeaponList>().loadout;
-        inventory.Add(2);
+        //inventory.Add(2);
         //inventory.Add(0);
     }
 
@@ -45,6 +45,9 @@ public class WeaponSwitch : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && maxWeps >= 2) {
             selectedInventorySlot = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && maxWeps >= 3) {
+            selectedInventorySlot = 2;
         }
 
         if (maxWeps > 0 && prevSelectedSpot != selectedInventorySlot) {

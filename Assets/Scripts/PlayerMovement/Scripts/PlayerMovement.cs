@@ -68,8 +68,7 @@ public class PlayerMovement : MonoBehaviour
         float speed = (!sprint) ? walkSpeed : runSpeed;
         if (crouching) speed = crouchSpeed;
 
-        if (grounded)
-        {
+        if (grounded){
             moveDirection = new Vector3(input.x, -antiBumpFactor, input.y);
             moveDirection = transform.TransformDirection(moveDirection) * speed;
             UpdateJump();
@@ -86,8 +85,7 @@ public class PlayerMovement : MonoBehaviour
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
     }
 
-    public void Move(Vector3 direction, float speed, float appliedGravity)
-    {
+    public void Move(Vector3 direction, float speed, float appliedGravity){
         if (forceTime > 0)
             return;
 
