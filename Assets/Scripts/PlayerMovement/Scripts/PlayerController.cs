@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
     void CheckSliding(){
 
         //Check to slide when running
-        if (playerInput.crouch && canSlide()){
+        if (playerInput.crouching && canSlide()){
 
             slideDir = transform.forward;
             movement.controller.height = halfheight;
@@ -289,18 +289,20 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, -Vector3.up, out var hit, rayDistance)) {
             float angle = Vector3.Angle(hit.normal, Vector3.up); //Slope angle
 
-            if (angle > slideLimit && movement.moveDirection.y < 0 && status != Status.sliding) {
-                slideTime = 1f;
-                Vector3 hitNormal = hit.normal;
-                slideDir = new Vector3(hitNormal.x, -hitNormal.y, hitNormal.z);
-                Vector3.OrthoNormalize(ref hitNormal, ref slideDir);
-                controlledSlide = false;
-                status = Status.sliding;
-            }
-            else if (status == Status.sliding && angle <= slideLimit && !controlledSlide) {
-                slideTime = 0;
-                movement.Jump(Vector3.up, 1f);
-                playerInput.ResetJump();
+            if (hit.transform.tag == "Block"){
+                if (angle > slideLimit && movement.moveDirection.y < 0 && status != Status.sliding) {
+                    slideTime = 1f;
+                    Vector3 hitNormal = hit.normal;
+                    slideDir = new Vector3(hitNormal.x, -hitNormal.y, hitNormal.z);
+                    Vector3.OrthoNormalize(ref hitNormal, ref slideDir);
+                    controlledSlide = false;
+                    status = Status.sliding;
+                }
+                else if (status == Status.sliding && angle <= slideLimit && !controlledSlide) {
+                    slideTime = 0;
+                    movement.Jump(Vector3.up, 1f);
+                    playerInput.ResetJump();
+                }
             }
         }
         else if(status == Status.sliding){

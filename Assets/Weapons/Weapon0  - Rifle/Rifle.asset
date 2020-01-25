@@ -17,12 +17,13 @@ MonoBehaviour:
   firerate: 0.1
   aimSpeed: 20
   impactForce: 200
-  damage: 2
+  damage: 5
   bloomRate: 20
   recoil: 2.5
   kickback: 0.1
   modelOffsetX: 0
   modelOffsetY: 0
   modelOffsetZ: 0
+  projectile: {fileID: 0}
   gunShotSound: {fileID: 8300000, guid: 9fe1ecb929940da4d91a5a7b9167f334, type: 3}
   pitchRandomization: 0.025

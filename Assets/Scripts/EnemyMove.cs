@@ -11,6 +11,14 @@ public class EnemyMove : MonoBehaviour
 
     public ThirdPersonCharacter character;
 
+    [SerializeField]
+    float followDistance = 40f;
+    [SerializeField]
+    float speed = 2f;
+
+
+    float distToPlayer;
+
     private void Start() {
         agent.updateRotation = false;
 
@@ -19,6 +27,13 @@ public class EnemyMove : MonoBehaviour
 
     void Update(){
         agent.SetDestination(target.position);
+        
+        distToPlayer = Vector3.Distance(transform.position, target.position);
+
+        if (followDistance > distToPlayer)
+            agent.speed = speed;
+        else
+            agent.speed = 0;
 
 
         if (agent.remainingDistance > agent.stoppingDistance)

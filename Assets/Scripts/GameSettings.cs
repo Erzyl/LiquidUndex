@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSettings : MonoBehaviour
-{
+public class GameSettings : MonoBehaviour{
     // Start is called before the first frame update
-    void Start()
-    {
+    TimeManager timeManager;
+
+    void Start(){
         Cursor.lockState = CursorLockMode.Locked;
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
     }
 
     // Update is called once per frame
@@ -19,6 +20,10 @@ public class GameSettings : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Return))
             RestartLevel();
+
+        if (Input.GetKeyDown(KeyCode.F))
+            timeManager.SlowTime();
+        
 
     }
 

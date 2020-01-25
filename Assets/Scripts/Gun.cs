@@ -14,9 +14,11 @@ public class Gun : MonoBehaviour
     private Vector3 destination;
     public Transform bulletHole;
 
+    private float hitMarkerVolme = 0.2f;
+
     float shootTimerTick;
     
-    float range = 100f;
+    float range = 60f;
     public LayerMask mask;
 
     private WeaponSwitch switchParent;
@@ -175,6 +177,7 @@ public class Gun : MonoBehaviour
     void ShootProjectile() {
         GameObject bullet = Instantiate(projectile,muzzleFlash.transform.position,muzzleFlash.transform.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.forward*500f);
+        bullet.GetComponent<RocketScript>().damage = damage;
     }
 
     void ShootRaycast(Vector3 bloom) {
@@ -204,6 +207,7 @@ public class Gun : MonoBehaviour
 
                 hitMarkerImage.color = Color.white;
                 hitMarkerWait = 0.1f;
+                sfx.volume = hitMarkerVolme;
                 sfx.PlayOneShot(hitMarkerSound, 20f);
 
             }

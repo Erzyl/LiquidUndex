@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour{
     private int hp;
-    private int hp_max = 50;
+    public int hp_max = 20;
 
     public Rigidbody ragRigidHip;
+    public AudioSource deathSound;
+    public GameObject bloodFab;
 
     void Awake(){
         hp = hp_max;
@@ -24,6 +26,10 @@ public class Enemy : MonoBehaviour{
 
     public void TakeDamage(int damage) {
         hp -= damage;
+        Vector3 offSetBlood = new Vector3();
+        offSetBlood.y = 2f;
+        GameObject bloodP = Instantiate(bloodFab, transform.position+ offSetBlood, transform.rotation);
+        Destroy(bloodP, 1f);
 
         if (hp <= 0)
             Death();
@@ -32,10 +38,11 @@ public class Enemy : MonoBehaviour{
 
 
     void Death() {
-      
 
+        deathSound.Play();
         GetComponent<Animator>().enabled = false;
         EnemyMove getMove = GetComponent<EnemyMove>();
+        GetComponent<EnemyShoot>().enabled = false;
         getMove.agent.speed = 0;
         getMove.enabled = false;
         

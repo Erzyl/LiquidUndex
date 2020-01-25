@@ -9,6 +9,7 @@ public class RocketScript : MonoBehaviour{
     private float force = 500f;
     public AudioClip explosionSound;
     private float explosionVolume = 4f;
+    public int damage;
 
 
     private void OnCollisionEnter(Collision collision) {
@@ -25,6 +26,13 @@ public class RocketScript : MonoBehaviour{
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null) {
                 rb.AddExplosionForce(force, transform.position, radius);
+            }
+
+            if (nearbyObject.transform.tag == "Enemy") {
+                Enemy enemy = nearbyObject.transform.GetComponent<Enemy>();
+                enemy.TakeDamage(damage);
+
+
             }
         }
 

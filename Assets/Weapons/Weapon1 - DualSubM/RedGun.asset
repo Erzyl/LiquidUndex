@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: RedGun
   prefab: {fileID: 86433927758669680, guid: db42b709a1c6faf449155c5b8ed3da87, type: 3}
-  firerate: 0.1
+  firerate: 0.2
   aimSpeed: 20
   impactForce: 100
-  damage: 1
+  damage: 2
   bloomRate: 75
-  recoil: 3.5
-  kickback: 0.1
+  recoil: 4
+  kickback: 0.2
   modelOffsetX: 0.4
   modelOffsetY: 0
   modelOffsetZ: 0
+  projectile: {fileID: 0}
   gunShotSound: {fileID: 8300000, guid: c6db2f1e439c7bb4f9f00559500c847c, type: 3}
   pitchRandomization: 0.1
