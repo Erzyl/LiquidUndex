@@ -82,14 +82,15 @@ public class PlayerMovement : MonoBehaviour
            
         }
         else { //Air controll
-            
-            Vector3 md = new Vector3(input.x* airControll, moveDirection.y, input.y* airControll);
-            md = transform.TransformDirection(md); //Local dir to world dir
+            Vector3 moveDirection = new Vector3(input.x* airControll, moveDirection.y, input.y* airControll); //Should not add aircontrol here?
+            //Keep air controll 0-1 and then handle the rest as normal? Keep friction
+            moveDirection = transform.TransformDirection(moveDirection); //Local dir to world dir
 
-            Vector3 movDirHolder = moveDirection;
-            movDirHolder.x += md.x;
-            movDirHolder.z += md.z;
-            moveDirection = movDirHolder;
+            // Vector3 movDirHolder = moveDirection;
+            // movDirHolder.x = md.x;
+            // movDirHolder.z += md.z;
+            // moveDirection = movDirHolder;
+
         }
 
         
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Movement during special phases
     public void Move(Vector3 direction, float speed, float appliedGravity){
         if (forceTime > 0)
             return;
@@ -121,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         else
             moveDirection = move;
 
-        UpdateJump();
+        //UpdateJump(); //Air control
 
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
     }

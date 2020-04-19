@@ -32,6 +32,7 @@ public class CameraEffects : MonoBehaviour{
 
     void UpdateFOV() {
 
+
         bool isRunning = playerController.playerInput.run;
         Status status = playerController.status;
 

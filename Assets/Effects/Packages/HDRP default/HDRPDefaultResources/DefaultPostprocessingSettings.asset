@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d08ce26990eb1a4a9177b860541e702, type: 3}
   m_Name: Exposure
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -262,6 +262,9 @@ MonoBehaviour:
     m_Value: 1
     min: 0
     max: 20
+  cameraMotionBlur:
+    m_OverrideState: 0
+    m_Value: 1
   m_SampleCount:
     m_OverrideState: 0
     m_Value: 8
@@ -348,7 +351,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.42844126}
+    m_Value: {x: 1, y: 0.84801257, z: 0.83166635, w: -0.42844126}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: -0.6472196}

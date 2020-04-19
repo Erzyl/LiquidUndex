@@ -1,9 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{0CF83599-48BF-F4B8-ED17-9C4B0D13FEAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponents", "NavMeshComponents.csproj", "{8EBEA003-EE54-6248-9420-63225E6E05DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.RenderPipelines.HighDefinition.Config.Runtime", "Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj", "{52DB18FB-D45D-E068-EBF5-46E3424842BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponentsEditor", "NavMeshComponentsEditor.csproj", "{7F4C9ADC-5147-7964-EAED-0F75927C9AA1}"
 EndProject
@@ -23,6 +25,10 @@ Global
 		{8EBEA003-EE54-6248-9420-63225E6E05DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EBEA003-EE54-6248-9420-63225E6E05DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EBEA003-EE54-6248-9420-63225E6E05DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DB18FB-D45D-E068-EBF5-46E3424842BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DB18FB-D45D-E068-EBF5-46E3424842BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DB18FB-D45D-E068-EBF5-46E3424842BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DB18FB-D45D-E068-EBF5-46E3424842BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F4C9ADC-5147-7964-EAED-0F75927C9AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F4C9ADC-5147-7964-EAED-0F75927C9AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F4C9ADC-5147-7964-EAED-0F75927C9AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU

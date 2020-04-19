@@ -419,8 +419,6 @@ public class PlayerController : MonoBehaviour
         Vector3 input = playerInput.input;
         float s = (input.y > 0) ? input.y : 0;
 
-        
-
         Vector3 move = wallNormal * s;
         
         if (polledInputWalljump) {
